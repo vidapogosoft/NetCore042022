@@ -6,10 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Modelo\Database\" />
-    <Folder Include="Modelo\DTO\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="DataRepository\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
