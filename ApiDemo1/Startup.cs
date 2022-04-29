@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using ApiDemo1.Interfaces;
+using ApiDemo1.Services;
+
 namespace ApiDemo1
 {
     public class Startup
@@ -26,6 +29,10 @@ namespace ApiDemo1
         {
 
             services.AddControllers();
+
+            //services.AddSingleton
+            //services.AddTransient
+            services.AddScoped<IPersonasGet, PersonaServicesGet>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

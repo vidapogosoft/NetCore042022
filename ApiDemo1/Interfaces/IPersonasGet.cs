@@ -14,5 +14,7 @@ namespace ApiDemo1.Interfaces
         IEnumerable<DTOPersona> ListPersonaAll2 { get; }
         IEnumerable<Persona> ListPersonas(string Estado);
         IEnumerable<Persona> ListPersonaByIdentificacion(string Identificacion);
+        IEnumerable<Persona> ListPersonaById(int Id, string Estado);
     }
+
 }

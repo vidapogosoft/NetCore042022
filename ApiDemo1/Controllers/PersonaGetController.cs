@@ -32,5 +32,24 @@ namespace ApiDemo1.Controllers
         {
             return Ok(_Persona.ListPersonaAll2);
         }
+
+        [HttpGet("Estado/{Estado}")]
+        public IActionResult GetPersonasByEstado(string Estado)
+        {
+            return Ok(_Persona.ListPersonas(Estado));
+        }
+
+        [HttpGet("DNI/{Identificacion}")]
+        public IActionResult GetPersonaByIdentificacion(string Identificacion)
+        {
+            return Ok(_Persona.ListPersonaByIdentificacion(Identificacion));
+        }
+
+        [HttpGet("Id/{Id}/{Estado}")]
+        public IActionResult GetPersonaById(int Id, string Estado)
+        {
+            return Ok(_Persona.ListPersonaById(Id, Estado));
+        }
+
     }
 }

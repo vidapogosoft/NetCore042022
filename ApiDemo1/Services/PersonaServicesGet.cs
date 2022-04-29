@@ -34,5 +34,10 @@ namespace ApiDemo1.Services
             return data.GetPersonaByIdentificacion(Identificacion);
         }
 
+        public IEnumerable<Persona> ListPersonaById(int Id, string Estado)
+        {
+            return data.GetPersonaById(Id, Estado);
+        }
+
     }
 }
