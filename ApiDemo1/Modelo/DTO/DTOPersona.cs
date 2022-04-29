@@ -9,6 +9,8 @@ namespace ApiDemo1.Modelo.DTO
     {
         public int IdPersonaResponse { get; set; }
         public string IdentificacionResponse { get; set; }
+        public string NombresResponse { get; set; }
+        public string ApellidosResponse { get; set; }
         public string NombresCompletosResponse { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using ApiDemo1.Interfaces;
+using ApiDemo1.Modelo.Database;
 
 
 namespace ApiDemo1.Controllers
@@ -49,6 +50,31 @@ namespace ApiDemo1.Controllers
         public IActionResult GetPersonaById(int Id, string Estado)
         {
             return Ok(_Persona.ListPersonaById(Id, Estado));
+        }
+
+        [HttpPost]
+        public IActionResult CreatePersona([FromBody] Persona NewItem)
+        {
+            try
+            {
+
+                if (NewItem == null || !ModelState.IsValid)
+                {
+                    return BadRequest("Error: Envio de datos");
+                }
+
+                //continuo con el registro de datos
+
+                _Persona.InsertPersona(NewItem);
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("Error:" + ex.Message);
+            }
+
+           
+            return Ok(NewItem);
         }
 
     }

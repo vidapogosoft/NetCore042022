@@ -13,6 +13,7 @@ namespace ApiDemo1.Services
     public class PersonaServicesGet: IPersonasGet
     {
         public PersonaDataRepositoryGet data = new PersonaDataRepositoryGet();
+        public PersonaDataRepositoryPost dataPost = new PersonaDataRepositoryPost();
 
         public IEnumerable<Persona> ListPersonaAll 
         { 
@@ -37,6 +38,15 @@ namespace ApiDemo1.Services
         public IEnumerable<Persona> ListPersonaById(int Id, string Estado)
         {
             return data.GetPersonaById(Id, Estado);
+        }
+
+        public void InsertPersona(Persona NewItem)
+        {
+            NewItem.NombresCompletos = NewItem.Nombres + ' ' + NewItem.Apellidos;
+            NewItem.FechaIngreso = DateTime.Now;
+            NewItem.Estado = "ACTIVO";
+
+            dataPost.InsertPersona(NewItem);
         }
 
     }

@@ -15,6 +15,7 @@ namespace ApiDemo1.Interfaces
         IEnumerable<Persona> ListPersonas(string Estado);
         IEnumerable<Persona> ListPersonaByIdentificacion(string Identificacion);
         IEnumerable<Persona> ListPersonaById(int Id, string Estado);
+        void InsertPersona(Persona NewItem);
     }
 
 }
