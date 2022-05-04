@@ -19,6 +19,8 @@ namespace ApiDemo1.Interfaces
         void UpdatePersona(Persona Item);
         void UpdatePersona2(int IdPersona, string Identificacion,
                 string Nombres, string Apellidos, string Estado);
+
+        void DeletePersona(Persona Item);
     }
 
 }

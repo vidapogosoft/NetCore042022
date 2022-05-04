@@ -60,5 +60,10 @@ namespace ApiDemo1.Services
             dataPost.UpdatePersona2(IdPersona, Identificacion,
                 Nombres,  Apellidos, Estado);
         }
+
+        public void DeletePersona(Persona Item)
+        {
+            dataPost.DeletePersona(Item);
+        }
     }
 }

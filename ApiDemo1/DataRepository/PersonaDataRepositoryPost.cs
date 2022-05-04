@@ -66,5 +66,23 @@ namespace ApiDemo1.DataRepository
             }
 
         }
+
+        public void DeletePersona(Persona Item)
+        {
+            using (var ctx = new DBAeroClubContext())
+            {
+                var DatoRegistrado = ctx.Personas.Where(a => a.Estado == "ACTIVO"
+                && a.IdPersona == Item.IdPersona).FirstOrDefault();
+
+                if (DatoRegistrado != null)
+                {
+                    ctx.Personas.Remove(DatoRegistrado);
+
+                    ctx.SaveChanges();
+                }
+
+            }
+
+        }
     }
 }

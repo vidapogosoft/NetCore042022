@@ -125,5 +125,28 @@ namespace ApiDemo1.Controllers
 
         }
 
+        [HttpDelete]
+        public IActionResult DeletePersona([FromBody] Persona Item)
+        {
+            try
+            {
+                if (Item == null || !ModelState.IsValid)
+                {
+                    return BadRequest("Error: Envio de datos");
+                }
+
+                _Persona.DeletePersona(Item);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error:" + ex.Message);
+            }
+
+
+            return Ok();
+
+        }
+
     }
 }

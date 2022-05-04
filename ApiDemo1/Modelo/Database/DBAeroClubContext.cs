@@ -24,7 +24,7 @@ namespace ApiDemo1.Modelo.Database
         public virtual DbSet<Piloto> Pilotos { get; set; }
         public virtual DbSet<PilotoVuelo> PilotoVuelos { get; set; }
         public virtual DbSet<Vuelo> Vuelos { get; set; }
-
+        public virtual DbSet<DTO.DTOResultSet> Resultado { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

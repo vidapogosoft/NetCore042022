@@ -75,3 +75,19 @@ Create table  PilotoVuelos
     FechaIngreso datetime,
     Estado varchar(50)
 )
+
+
+use DBAeroClub
+go
+
+create proc TranPiloto
+    @IdPersona int,
+    @IdPiloto int
+    as
+    begin
+
+        ---TODO : de lo que se analcie realziar
+
+        Select 1 as IdMensaje, 'EXITO' as Mensaje
+
+    end
