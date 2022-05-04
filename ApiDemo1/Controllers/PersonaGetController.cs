@@ -77,5 +77,53 @@ namespace ApiDemo1.Controllers
             return Ok(NewItem);
         }
 
+        [HttpPut]
+        public IActionResult UpdatePersona([FromBody] Persona Item)
+        {
+            try
+            {
+                if (Item == null || !ModelState.IsValid)
+                {
+                    return BadRequest("Error: Envio de datos");
+                }
+
+                _Persona.UpdatePersona(Item);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error:" + ex.Message);
+            }
+
+
+            return Ok(Item);
+
+        }
+
+        [HttpPut("update/{IdPersona}/{Identificacion}/{Nombres}/{Apellidos}/{Estado}")]
+        public IActionResult UpdatePersona2(int IdPersona, string Identificacion,
+                string Nombres, string Apellidos, string Estado)
+        {
+            try
+            {
+                if (IdPersona == 0)
+                {
+                    return BadRequest("Error: Envio de datos");
+                }
+
+                _Persona.UpdatePersona2(IdPersona, Identificacion,
+                Nombres, Apellidos, Estado);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error:" + ex.Message);
+            }
+
+
+            return Ok();
+
+        }
+
     }
 }

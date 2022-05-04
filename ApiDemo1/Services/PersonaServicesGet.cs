@@ -49,5 +49,16 @@ namespace ApiDemo1.Services
             dataPost.InsertPersona(NewItem);
         }
 
+        public void UpdatePersona(Persona Item)
+        {
+            dataPost.UpdatePersona(Item);
+        }
+
+        public void UpdatePersona2(int IdPersona, string Identificacion,
+                string Nombres, string Apellidos, string Estado)
+        {
+            dataPost.UpdatePersona2(IdPersona, Identificacion,
+                Nombres,  Apellidos, Estado);
+        }
     }
 }
