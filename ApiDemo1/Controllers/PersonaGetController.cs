@@ -9,8 +9,11 @@ using ApiDemo1.Interfaces;
 using ApiDemo1.Modelo.Database;
 
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace ApiDemo1.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonaGetController : ControllerBase

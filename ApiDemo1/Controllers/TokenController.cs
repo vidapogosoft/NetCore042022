@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
 using ApiDemo1.Modelo.DTO;
+using ApiDemo1.Interfaces;
 
 namespace ApiDemo1.Controllers
 {
@@ -15,18 +16,27 @@ namespace ApiDemo1.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
+        private readonly IJwtAuthenticationService _authService;
+
+        public TokenController(IJwtAuthenticationService auth)
+        {
+
+            _authService = auth;
+        }
+
+
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] AuthInfo user)
         {
-            var token = user.Username + user.Password;
+            var token = _authService.Authenticate(user.Username, user.Password);
 
-            if(token == null)
+            if (token == null)
             {
                 return Unauthorized();
             }
 
-            return Ok();
+            return Ok(token);
         }
 
     }
