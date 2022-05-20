@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ApiDemo1.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonaGetController : ControllerBase
@@ -25,7 +25,7 @@ namespace ApiDemo1.Controllers
             _Persona = iper;
         }
 
-        [HttpGet("PerosnasAll1")]
+        [HttpGet("PersonasAll1")]
         public IActionResult Get1()
         {
             return Ok(_Persona.ListPersonaAll);
