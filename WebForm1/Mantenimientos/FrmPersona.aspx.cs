@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -24,7 +25,7 @@ namespace WebForm1.Mantenimientos
 
         protected void BtnConsulta_Click(object sender, EventArgs e)
         {
-
+            CargaPersonas();
         }
 
         private async void CargaPersonas()
@@ -39,6 +40,39 @@ namespace WebForm1.Mantenimientos
             }
 
             GrdPersona.DataBind();
+        }
+
+        protected async void BtnGrabarDatos_Click(object sender, EventArgs e)
+        {
+            int grabado = 0;
+
+            try
+            {
+                DTOPersona item = new DTOPersona();
+
+                item.Identificacion = Txtidentificacion.Text;
+                item.Apellidos = TxtApellidos.Text;
+                item.Nombres = TxtNombres.Text;
+
+                grabado = await ApiPersona.SaveDatos(item);
+
+                if(grabado == 1)
+                {
+                    LblMensaje.Text = "Registro Exitoso";
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LblMensaje.Text = ex.Message;
+                Debug.WriteLine(@"Error {0}", ex.Message);
+            }
+            finally
+            {
+                CargaPersonas();
+            }
+
         }
 
     }

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 using WebForm1.Helper;
 using WebForm1.DTO;
+using System.Text;
 
 namespace WebForm1.Services
 {
@@ -29,7 +30,7 @@ namespace WebForm1.Services
         {
             ListPersonas = new List<DTOPersona>();
 
-            var uri = new Uri(string.Format(RootApi.ItemsUrl, "PersonaGet", string.Empty));
+            var uri = new Uri(string.Format(RootApi.ItemsUrl, "PersonaGet/PersonasAll1", string.Empty));
 
             try
             {
@@ -37,9 +38,9 @@ namespace WebForm1.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = response.Content.ReadAsStringAsync();
+                    var content = await response.Content.ReadAsStringAsync();
 
-                    ListPersonas = JsonConvert.DeserializeObject<List<DTOPersona>>(content.ToString());
+                    ListPersonas = JsonConvert.DeserializeObject<List<DTOPersona>>(content);
 
                 }
 
@@ -55,5 +56,37 @@ namespace WebForm1.Services
 
         }
 
+        public async Task<int> SaveDatos(DTOPersona item)
+        {
+            int Grabado = 0;
+
+            var uri = new Uri(string.Format(RootApi.ItemsUrl, "PersonaGet", string.Empty));
+
+            try
+            {
+
+                var json = JsonConvert.SerializeObject(item);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage Response = null;
+
+                Response = await _client.PostAsync(uri, content);
+
+                if (Response.IsSuccessStatusCode)
+                {
+                    Grabado = 1;
+                    Console.WriteLine("Post Exitoso: " + json.ToString());
+                }
+
+                return Grabado;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"Error {0}", ex.Message);
+                return Grabado;
+            }
+
+        }
     }
 }
