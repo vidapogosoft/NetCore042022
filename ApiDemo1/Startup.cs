@@ -21,6 +21,8 @@ namespace ApiDemo1
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,6 +34,19 @@ namespace ApiDemo1
         public void ConfigureServices(IServiceCollection services)
         {
             var key = "Demo Token ApiKey Exmaple";
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:12241", "http://localhost:12241/persona/listar",
+                                          "http://localhost:12241/persona/crear", "http://localhost:12241/persona/actualizar")
+                                      .AllowAnyOrigin()
+                                      .AllowAnyHeader()
+                                       .AllowAnyMethod();
+                                  });
+            });
 
             services.AddControllers();
 
@@ -80,6 +95,8 @@ namespace ApiDemo1
             }
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             //llamo al middleware de la autenticacion
             app.UseAuthentication();

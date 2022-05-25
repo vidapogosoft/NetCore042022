@@ -75,5 +75,14 @@ namespace ApiDemo1.DataRepository
             }
         }
 
+
+        public Persona GetPersonaById2(int Id)
+        {
+            using (var context = new DBAeroClubContext())
+            {
+                return context.Personas.Where(a => a.IdPersona == Id).FirstOrDefault();
+            }
+        }
+
     }
 }

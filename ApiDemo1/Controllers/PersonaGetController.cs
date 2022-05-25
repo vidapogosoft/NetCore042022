@@ -55,6 +55,12 @@ namespace ApiDemo1.Controllers
             return Ok(_Persona.ListPersonaById(Id, Estado));
         }
 
+        [HttpGet("IdPersona/{IdPersona}")]
+        public IActionResult GetPersonaByIde(int IdPersona)
+        {
+            return Ok(_Persona.ListPersonaById2(IdPersona));
+        }
+
         [HttpPost]
         public IActionResult CreatePersona([FromBody] Persona NewItem)
         {

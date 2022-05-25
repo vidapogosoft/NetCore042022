@@ -40,6 +40,11 @@ namespace ApiDemo1.Services
             return data.GetPersonaById(Id, Estado);
         }
 
+        public Persona ListPersonaById2(int Id)
+        {
+            return data.GetPersonaById2(Id);
+        }
+
         public void InsertPersona(Persona NewItem)
         {
             NewItem.NombresCompletos = NewItem.Nombres + ' ' + NewItem.Apellidos;
