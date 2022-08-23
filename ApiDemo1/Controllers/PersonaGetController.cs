@@ -25,6 +25,12 @@ namespace ApiDemo1.Controllers
             _Persona = iper;
         }
 
+        [HttpGet]
+        public IActionResult Get100()
+        {
+            return Ok(_Persona.ListPersonaAll);
+        }
+
         [HttpGet("PersonasAll1")]
         public IActionResult Get1()
         {
